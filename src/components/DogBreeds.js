@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 // import TextField from '@material-ui/core/TextField';
 import axios from 'axios';
 
-const DogBreeds = () => {
+const DogBreeds = (props) => {
 const [dogBreeds, setDogBreeds] = useState([]);
   useEffect(() => {
     axios.get('https://frontend-take-home-service.fetch.com/dogs/breeds', {
@@ -17,20 +17,17 @@ const [dogBreeds, setDogBreeds] = useState([]);
         console.error(error);
       });
   }, []); // Empty dependency array to run the effect only once on component mount
-// return(<>
-//     <Autocomplete 
-//         options={dogBreeds}
-//         renderInput={(params) => (
-//             <TextField
-//                 {...params}
-//                 label="Select a breed"
-//                 variant="outlined"
-//             />
-//         )}
-//     />
-// </>);
 
-
+ return(
+    <select className="border flex-col" id="breed" name="breed" defaultValue={'default'} onChangeCapture={props.handleSelect}>
+    <option key = "default" value="" ></option>
+    {dogBreeds.map((breed) => (
+      <option key={breed} value={breed}>
+        {breed}
+      </option>
+    ))}
+  </select>
+ )
 };
 
 export default DogBreeds;
