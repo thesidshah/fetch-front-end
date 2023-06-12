@@ -32,7 +32,7 @@ const [dogBreeds, setDogBreeds] = useState([]);
 //       </option>
 //     ))}
 //   </select>
-  <Select isMulti={true} options={dogBreeds}/>
+  <Select isMulti={true} options={dogBreeds} onChange={props.handleSelect}/>
  )
 };
 
